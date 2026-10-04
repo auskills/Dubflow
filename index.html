@@ -1,0 +1,48 @@
+<!doctype html>
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DubFlow AI</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#0f1020;color:#fff}
+.wrap{max-width:520px;margin:auto;padding:22px}
+.logo{font-size:30px;font-weight:800} .sub{color:#aaa;margin-bottom:22px}
+.card{background:#191a2c;border-radius:18px;padding:18px;margin:14px 0}
+input,select,button{width:100%;box-sizing:border-box;padding:14px;border-radius:12px;border:0;margin-top:10px;font-size:15px}
+input,select{background:#292a40;color:#fff} button{background:#6c5ce7;color:white;font-weight:700}
+.small{font-size:12px;color:#aaa;line-height:1.5} .row{display:flex;gap:10px} .row>*{flex:1}
+.badge{display:inline-block;background:#252642;padding:7px 10px;border-radius:20px;margin:3px;font-size:12px}
+#status{margin-top:14px;color:#a8ffcf}
+</style></head>
+<body><div class="wrap">
+<div class="logo">🎬 DubFlow AI</div>
+<div class="sub">50+ Language Video Dubbing</div>
+<div class="card">
+<h3>🔗 Video Link</h3>
+<input id="url" placeholder="Paste an allowed/public video URL">
+<div class="small">Only process videos you own or have permission to download/process.</div>
+</div>
+<div class="card">
+<h3>🌍 Languages</h3>
+<div class="row"><div><label>From</label><select id="from"></select></div>
+<div><label>Dub to</label><select id="to"></select></div></div>
+<button onclick="start()">🎙️ Start AI Dubbing</button>
+<div id="status"></div>
+</div>
+<div class="card">
+<h3>✨ Workflow</h3>
+<span class="badge">Detect</span><span class="badge">Transcribe</span><span class="badge">Translate</span>
+<span class="badge">AI Voice</span><span class="badge">Sync</span><span class="badge">Download</span>
+<p class="small">This first mobile version is the interface. The production backend must be connected for real video fetching, speech-to-text, translation, voice generation and rendering.</p>
+</div>
+</div>
+<script>
+const L=["English", "Urdu", "Pashto", "Hindi", "Arabic", "Persian", "Turkish", "French", "German", "Spanish", "Portuguese", "Italian", "Russian", "Chinese (Mandarin)", "Japanese", "Korean", "Indonesian", "Malay", "Bengali", "Punjabi", "Tamil", "Telugu", "Marathi", "Gujarati", "Kannada", "Malayalam", "Thai", "Vietnamese", "Filipino", "Dutch", "Polish", "Ukrainian", "Romanian", "Greek", "Czech", "Hungarian", "Swedish", "Norwegian", "Danish", "Finnish", "Hebrew", "Swahili", "Zulu", "Afrikaans", "Somali", "Amharic", "Nepali", "Sinhala", "Burmese", "Khmer", "Lao", "Serbian", "Croatian", "Bulgarian", "Slovak", "Slovenian", "Lithuanian", "Latvian", "Estonian", "Icelandic", "Irish", "Welsh", "Georgian", "Armenian", "Azerbaijani", "Kazakh"];
+const a=document.getElementById('from'),b=document.getElementById('to');
+L.forEach(x=>{a.add(new Option(x,x));b.add(new Option(x,x));});
+a.value='English';b.value='Urdu';
+function start(){
+ const u=document.getElementById('url').value.trim();
+ const s=document.getElementById('status');
+ if(!u){s.textContent='Please paste a video link first.';return;}
+ s.textContent='Demo queued: backend connection is required to process the video.';
+}
+</script></body></html>
